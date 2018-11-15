@@ -1,0 +1,2 @@
+class TargetSite < ApplicationRecord
+end
