@@ -19,14 +19,20 @@ default: &default
 
 development:
   <<: *default
+  host: <%= ENV['AD_SCRAPER_DATABASE_HOST'] %>
   database: ad-scraper_development
+  username: <%= ENV['AD_SCRAPER_DATABASE_USER'] %>
+  password: <%= ENV['AD_SCRAPER_DATABASE_PASSWORD'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  host: <%= ENV['AD_SCRAPER_DATABASE_HOST'] %>
   database: ad-scraper_test
+  username: <%= ENV['AD_SCRAPER_DATABASE_USER'] %>
+  password: <%= ENV['AD_SCRAPER_DATABASE_PASSWORD'] %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -49,6 +55,7 @@ test:
 #
 production:
   <<: *default
+  host: <%= ENV['AD_SCRAPER_DATABASE_HOST'] %>
   database: ad-scraper_production
-  username: ad-scraper
-  password: <%= ENV['AD-SCRAPER_DATABASE_PASSWORD'] %>
+  username: <%= ENV['IMAIL_DATABASE_USER'] %>
+  password: <%= ENV['IMAIL_DATABASE_PASSWORD'] %>

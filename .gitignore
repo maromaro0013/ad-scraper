@@ -31,7 +31,8 @@
 /vendor/bin
 
 # Ignore emvironment settings
-.env.development
-.env.test
-.env.staging
 .env.production
+.env.staging
+.env.test
+.env
+.DS_Store
