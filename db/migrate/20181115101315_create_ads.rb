@@ -6,6 +6,7 @@ class CreateAds < ActiveRecord::Migration[5.2]
       t.string :title
       t.string :company_name
       t.references :target_site, null: false
+      t.references :target_page, null: false
 
       t.timestamps
     end

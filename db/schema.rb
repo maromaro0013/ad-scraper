@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 2018_11_15_101315) do
     t.string "title"
     t.string "company_name"
     t.bigint "target_site_id", null: false
+    t.bigint "target_page_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["target_page_id"], name: "index_ads_on_target_page_id"
     t.index ["target_site_id"], name: "index_ads_on_target_site_id"
   end
 
