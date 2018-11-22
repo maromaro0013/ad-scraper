@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 2018_11_15_101315) do
 
   create_table "ads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "ad_link"
-    t.string "img_link"
+    t.text "ad_link"
+    t.text "img_link"
     t.string "title"
     t.string "company_name"
     t.bigint "target_site_id", null: false
