@@ -5,8 +5,8 @@ class CreateAds < ActiveRecord::Migration[5.2]
       t.text :img_link
       t.string :title
       t.string :company_name
-      t.references :target_site, null: false
-      t.references :target_page, null: false
+      t.references :target_site, null: false, foreign_key: true
+      t.references :target_page, null: false, foreign_key: true
 
       t.timestamps
     end

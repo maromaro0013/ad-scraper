@@ -41,4 +41,7 @@ ActiveRecord::Schema.define(version: 2018_11_15_101315) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "ads", "target_pages"
+  add_foreign_key "ads", "target_sites"
+  add_foreign_key "target_pages", "target_sites"
 end
