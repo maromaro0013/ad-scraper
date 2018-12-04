@@ -4,7 +4,11 @@ class TargetPage < ApplicationRecord
   has_many :target_page_crawl_method, dependent: :destroy
   has_many :crawl_methods, through: :target_page_crawl_method
 
-  def self.crawl
+  def crawl
+    self.target_page_crawl_method.each { |page_crawl_method|
+      method = page_crawl_method.crawl_method
+      method.name.classify.constantize.crawl(self)
+    }
   end
 
   def add_crawl_method(crawl_method_id)

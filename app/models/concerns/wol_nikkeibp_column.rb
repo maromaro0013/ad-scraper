@@ -1,4 +1,4 @@
-module WolNikkeibpColumn
+class WolNikkeibpColumn
   def self.crawl(target_page)
     Capybara.register_driver :selenium do |app|
       Capybara::Selenium::Driver.new(app, {
@@ -25,7 +25,7 @@ module WolNikkeibpColumn
       image = style.split("\"")[1].gsub("//", "")
       link = ad.find(:xpath, "../../../../..").find("a.logly-lift-ad-link")[:href]
 
-      record = self.find_or_initialize_by(target_site_id: target_page.id, title: title)
+      record = Ad.find_or_initialize_by(target_site_id: target_page.id, title: title)
       record.update(
         ad_link: link,
         img_link: image,
