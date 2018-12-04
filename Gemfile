@@ -38,9 +38,6 @@ gem 'selenium-webdriver'
 # enviroment settingredis
 gem 'dotenv-rails'
 
-# enviroment settingredis
-gem 'dotenv-rails'
-
 # https://github.com/mbleigh/seed-fu
 gem 'seed-fu', '~> 2.3'
 
@@ -50,6 +47,9 @@ gem 'haml-rails'
 # Use jQuery
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+
+# Simple, efficient background processing for Ruby
+gem 'sidekiq'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
