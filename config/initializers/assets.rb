@@ -12,3 +12,9 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+
+Rails.application.config.assets.precompile += Dir.glob("#{Rails.root}/app/views/**/[^_]*.html.haml").map do |f|
+  controller = f.match(/.+\/views\/(?<controller>.+)\/.+\.html\.haml$/)[:controller]
+  action = f.match(/.+\/(?<action>.+)\.html\.haml$/)[:action]
+  ["controllers/#{controller}/#{action}.js", "controllers/#{controller}/#{action}.css"]
+end

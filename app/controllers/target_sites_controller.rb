@@ -1,5 +1,16 @@
 class TargetSitesController < ApplicationController
-  protect_from_forgery with: :null_session
+  protect_from_forgery except: [:create]
+
+  def index
+    respond_to { |format|
+      format.html
+      format.json { render json: TargetSite.all }
+    }
+    @target_sites = TargetSite.all
+  end
+
+  def show
+  end
 
   def create
     target_site = TargetSite.new(target_site_params)

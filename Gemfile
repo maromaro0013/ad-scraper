@@ -44,6 +44,13 @@ gem 'dotenv-rails'
 # https://github.com/mbleigh/seed-fu
 gem 'seed-fu', '~> 2.3'
 
+# Haml generators for Rails
+gem 'haml-rails'
+
+# Use jQuery
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
