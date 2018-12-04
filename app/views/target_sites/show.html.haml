@@ -36,6 +36,8 @@
         relation page
       %th
         image
+      %th
+        created date
   %tbody
     - @target_site.ad.each do |ad|
       %tr
@@ -49,3 +51,5 @@
           = link_to ad.target_page.name, "#{ad.target_page.uri}", target: "_blank"
         %td
           %img{src: ad.img_link, class: "ad_img_link"}
+        %td
+          = ad.created_at.strftime("%Y-%m-%d %H:%M:%S")
