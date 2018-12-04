@@ -10,6 +10,7 @@ class TargetSitesController < ApplicationController
   end
 
   def show
+    @target_site = TargetSite.find(params[:id])
   end
 
   def create

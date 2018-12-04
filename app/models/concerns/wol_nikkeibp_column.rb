@@ -28,7 +28,7 @@ class WolNikkeibpColumn
       record = Ad.find_or_initialize_by(target_site_id: target_page.id, title: title)
       record.update(
         ad_link: link,
-        img_link: image,
+        img_link: "https://#{image}",
         title: title,
         company_name: company,
         target_site_id: target_page.target_site_id,

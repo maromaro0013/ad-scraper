@@ -1,0 +1,43 @@
+%h1 Target Site [ #{@target_site.name} ]
+
+%h2 Target Pages
+
+%table
+  %thead
+    %tr
+      %th
+        name
+      %th
+        uri
+  %tbody
+    - @target_site.target_page.each do |target_page|
+      %tr
+        %td
+          #{target_page.name}
+        %td
+          = link_to target_page.uri, "#{target_page.uri}", target: "_blank"
+
+%h2 Included ADs
+
+%table
+  %thead
+    %tr
+      %th
+        title
+      %th
+        company name
+      %th
+        relation page
+      %th
+        image
+  %tbody
+    - @target_site.ad.each do |ad|
+      %tr
+        %td
+          = link_to ad.title, ad.ad_link, target: "_blank"
+        %td
+          = ad.company_name
+        %td
+          = link_to ad.target_page.name, "#{ad.target_page.uri}", target: "_blank"
+        %td
+          %img{src: ad.img_link, class: "ad_img_link"}

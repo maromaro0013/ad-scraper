@@ -9,11 +9,11 @@
         domain
       %th
         create date
-
-    - @target_sites.each do |target_site|
-      %tr
-        %td #{target_site.name}
-        %td
-          %a{ href: "https://#{target_site.domain}", target: "_blank" }
-            #{target_site.domain}
-        %td #{target_site.created_at.strftime("%Y-%m-%d %H:%M:%S")}
+    %tbody
+      - @target_sites.each do |target_site|
+        %tr
+          %td
+            = link_to target_site.name, url_for(action: :show, id: target_site.id)
+          %td
+            = link_to target_site.domain, "https://#{target_site.domain}", target: "_blank"
+          %td #{target_site.created_at.strftime("%Y-%m-%d %H:%M:%S")}
