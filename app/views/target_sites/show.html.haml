@@ -6,12 +6,16 @@
   %thead
     %tr
       %th
+        id
+      %th
         name
       %th
         uri
   %tbody
     - @target_site.target_page.each do |target_page|
       %tr
+        %td
+          = target_page.id
         %td
           #{target_page.name}
         %td
@@ -23,6 +27,8 @@
   %thead
     %tr
       %th
+        id
+      %th
         title
       %th
         company name
@@ -33,6 +39,8 @@
   %tbody
     - @target_site.ad.each do |ad|
       %tr
+        %td
+          = ad.id
         %td
           = link_to ad.title, ad.ad_link, target: "_blank"
         %td

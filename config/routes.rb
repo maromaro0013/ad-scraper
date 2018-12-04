@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "target_sites#index", as: :root
+
   resources :target_sites, only: %i( index show create )
   resources :target_pages, only: %i( create )
 
