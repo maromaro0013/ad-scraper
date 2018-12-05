@@ -34,5 +34,7 @@ module AdScraper
       g.javascripts false
       g.helper false
     end
+
+    Rails.application.config.active_job.queue_adapter = :sidekiq
   end
 end

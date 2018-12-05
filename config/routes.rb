@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   root "target_sites#index", as: :root
 
   resources :target_sites, only: %i( index show create )
