@@ -74,9 +74,9 @@ namespace :deploy do
   end
 
   task :restart_sidekiq do
-  on roles(:web) do
-    sudo :systemctl, "restart sidekiq"
-  end
+    on roles(:web) do
+      sudo :systemctl, "restart sidekiq"
+    end
   end
 
   task :restart_sidekiq_and_clear do
@@ -85,6 +85,16 @@ namespace :deploy do
         sudo :systemctl, "stop sidekiq"
         execute :rake, 'ad-scraper:clear_running_jobs'
         sudo :systemctl, "start sidekiq"
+      end
+    end
+  end
+
+  task :seed_fu do
+    on roles(:web) do
+      within release_path do
+        with rails_env: "production" do
+          execute :rake, 'db:seed_fu'
+        end
       end
     end
   end
