@@ -57,5 +57,5 @@ production:
   <<: *default
   host: <%= ENV['AD_SCRAPER_DATABASE_HOST'] %>
   database: ad-scraper_production
-  username: <%= ENV['IMAIL_DATABASE_USER'] %>
-  password: <%= ENV['IMAIL_DATABASE_PASSWORD'] %>
+  username: <%= ENV['AD_SCRAPER_DATABASE_USER'] %>
+  password: <%= ENV['AD_SCRAPER_DATABASE_PASSWORD'] %>
