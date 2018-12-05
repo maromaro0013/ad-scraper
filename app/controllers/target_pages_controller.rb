@@ -11,8 +11,24 @@ class TargetPagesController < ApplicationController
     end
   end
 
+  def add_crawl_method
+    id = params[:id]
+    crawl_method_id = target_page_params[:crawl_method_id]
+    target_page = TargetPage.find(id)
+    if target_page
+      if CrawlMethod.find(crawl_method_id)
+        target_page.add_crawl_method(crawl_method_id)
+        render json: "", status: 200
+      else
+        render json: "", status:404
+      end
+    else
+      render json: "", status:404
+    end
+  end
+
   private
     def target_page_params
-      params.require(:target_page).permit(:name, :uri, :target_site_id)
+      params.require(:target_page).permit(:name, :uri, :target_site_id, :crawl_method_id)
     end
 end
