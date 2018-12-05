@@ -72,4 +72,20 @@ namespace :deploy do
       sudo :systemctl, "restart nginx"
     end
   end
+
+  task :restart_sidekiq do
+  on roles(:web) do
+    sudo :systemctl, "restart sidekiq"
+  end
+  end
+
+  task :restart_sidekiq_and_clear do
+    on roles(:web) do
+      within release_path do
+        sudo :systemctl, "stop sidekiq"
+        execute :rake, 'ad-scraper:clear_running_jobs'
+        sudo :systemctl, "start sidekiq"
+      end
+    end
+  end
 end
