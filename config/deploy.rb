@@ -42,6 +42,7 @@ set :branch, ENV['BRANCH'] || "master"
 namespace :deploy do
   task :restart do
     on roles(:web) do
+      execute "ruby /var/www/ad-scraper/current/get_secrets_from_aws.rb > /var/www/ad-scraper/current/.env"
       sudo :systemctl, "restart ad-scraper"
     end
   end
