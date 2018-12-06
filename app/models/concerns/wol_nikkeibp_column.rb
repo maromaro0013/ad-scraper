@@ -35,5 +35,6 @@ class WolNikkeibpColumn
         target_page_id: target_page.id
       )
     }
+    session.driver.quit
   end
 end
