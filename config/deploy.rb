@@ -98,4 +98,12 @@ namespace :deploy do
       end
     end
   end
+
+  task :enqueue do
+    on roles(:web) do
+      within release_path do
+        execute :rake, 'ad_scraper:enqueue'
+      end
+    end
+  end
 end
