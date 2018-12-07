@@ -42,8 +42,9 @@ class WolNikkeibpColumn
     height = session.execute_script("return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);")
     window = session.driver.browser.manage.window
     window.resize_to(width+100, height+100)
-    session.save_screenshot "tmp/ss.png", full: true
+    session.save_screenshot "#{Rails.root}/tmp/ss.png", full: true
 
+    session.driver.browser.close
     session.driver.quit
   end
 end
