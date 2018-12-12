@@ -12,11 +12,14 @@ class WolNikkeibpKijisyuPr
     Capybara.javascript_driver = :selenium
     session = Capybara::Session.new(:selenium)
 
+    uri = "#{target_page.uri}/page/2/"
+    crawl_pr_page(target_page, uri, session)
+=begin
     (1..300).each { |page_count|
       uri = "#{target_page.uri}/page/#{page_count}/"
       break unless crawl_pr_page(target_page, uri, session)
     }
-
+=end
     session.driver.browser.close
     session.driver.quit
   end
@@ -37,8 +40,14 @@ class WolNikkeibpKijisyuPr
       next if Ad.find_by(ad_link: ad_link)
       session.visit(ad_link)
 
-      title = session.find("h1.entry-header-heading").text
-      img_link = session.find("div.entry-body.clearfix").first("img")[:src]
+      begin
+        title = session.find("h1.entry-header-heading").text
+        img_link = session.find("div.entry-body.clearfix").first("img")[:src]
+      rescue
+        title = ""
+        img_link = ""
+      end
+
       begin
         company = session.find("p", text: /提供：.*/).text
       rescue
