@@ -13,11 +13,19 @@ class WolNikkeibpColumn
     session = Capybara::Session.new(:selenium)
 
     session.visit(target_page.uri)
-    session.find("#dag_welcome_close", text: "広告をスキップ").click
+    begin
+      session.find("#dag_welcome_close", text: "広告をスキップ").click
+    rescue
+    end
 
     ads = session.all("div.logly-lift-ad-adv")
 
-    return if !ads || ads.size <= 0
+    if !ads || ads.size <= 0
+      session.driver.browser.close
+      session.driver.quit
+      return
+    end
+
     ads.each { |ad|
       company = ad.text
       next unless company.index("PR（")
@@ -37,12 +45,6 @@ class WolNikkeibpColumn
         target_page_id: target_page.id
       )
     }
-
-    width  = session.execute_script("return Math.max(document.body.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth, document.documentElement.scrollWidth, document.documentElement.offsetWidth);")
-    height = session.execute_script("return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);")
-    window = session.driver.browser.manage.window
-    window.resize_to(width+100, height+100)
-    session.save_screenshot "#{Rails.root}/tmp/ss.png", full: true
 
     session.driver.browser.close
     session.driver.quit
