@@ -12,7 +12,7 @@ class WolNikkeibpKijisyuPr
     Capybara.javascript_driver = :selenium
     session = Capybara::Session.new(:selenium)
 
-    (1..1).each { |page_count|
+    (1..300).each { |page_count|
       uri = "#{target_page.uri}/page/#{page_count}/"
       break unless crawl_pr_page(target_page, uri, session)
     }
