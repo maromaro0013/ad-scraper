@@ -51,6 +51,9 @@ gem 'jquery-ui-rails'
 # Simple, efficient background processing for Ruby
 gem 'sidekiq'
 
+# Ruby bindings of ChatWork API
+gem 'chatwork'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

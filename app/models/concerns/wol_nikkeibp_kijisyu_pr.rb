@@ -58,6 +58,14 @@ class WolNikkeibpKijisyuPr
         target_page_id: target_page.id
       )
 
+      chatwork = ChatWork::Client.new(api_key: ENV["CHATWORK_API_KEY"])
+      msg = "Title: #{title}\nCompany Name: #{company}\nLink: #{ad_link}"
+      url = ENV["AD_SCRAPER_URL"]
+      chatwork.create_message(
+        room_id: ENV["CHATWORK_ROOM_ID"],
+        body: "[info][title]#{url} - scraping new ad [/title]#{msg}[/info]"
+      )
+
       is_new_ad = true
     }
 
