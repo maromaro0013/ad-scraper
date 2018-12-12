@@ -13,5 +13,8 @@ envstr += "AD_SCRAPER_DATABASE_HOST=" + secrets['AD_SCRAPER_DATABASE_HOST'] + "\
 envstr += "AD_SCRAPER_DATABASE_USER=" + secrets['AD_SCRAPER_DATABASE_USER'] + "\n"
 envstr += "AD_SCRAPER_DATABASE_PASSWORD=" + secrets['AD_SCRAPER_DATABASE_PASSWORD'] + "\n"
 envstr += "REDIS_HOST=" + secrets['REDIS_HOST'] + "\n"
+envstr += "AD_SCRAPER_URL=" + secrets['AD_SCRAPER_URL'] + "\n"
+envstr += "CHATWORK_API_KEY=" + secrets['CHATWORK_API_KEY'] + "\n"
+envstr += "CHATWORK_ROOM_ID=" + secrets['CHATWORK_ROOM_ID'] + "\n"
 
 print envstr
