@@ -35,7 +35,7 @@ class WolNikkeibpColumn
       image = style.split("\"")[1].gsub("//", "")
       link = ad.find(:xpath, "../../../../..").find("a.logly-lift-ad-link")[:href]
 
-      record = Ad.find_or_initialize_by(target_site_id: target_page.id, title: title)
+      record = Ad.find_or_initialize_by(target_site_id: target_page.target_site_id, title: title)
       record.update(
         ad_link: link,
         img_link: "https://#{image}",

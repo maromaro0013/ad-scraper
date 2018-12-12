@@ -12,16 +12,16 @@ class WolNikkeibpKijisyuPr
     Capybara.javascript_driver = :selenium
     session = Capybara::Session.new(:selenium)
 
-    (1..300).each { |page_count|
+    (1..1).each { |page_count|
       uri = "#{target_page.uri}/page/#{page_count}/"
-      break unless crawl_pr_page(uri, session)
+      break unless crawl_pr_page(target_page, uri, session)
     }
 
     session.driver.browser.close
     session.driver.quit
   end
 
-  def self.crawl_pr_page(page_uri, session)
+  def self.crawl_pr_page(target_page, page_uri, session)
     session.visit(page_uri)
     ads = session.all("article.article")
     return false if !ads || ads.size <= 0
@@ -48,6 +48,16 @@ class WolNikkeibpKijisyuPr
           company = ""
         end
       end
+
+      record = Ad.find_or_create_by(
+        ad_link: ad_link,
+        img_link: img_link,
+        title: title,
+        company_name: company,
+        target_site_id: target_page.target_site_id,
+        target_page_id: target_page.id
+      )
+
       is_new_ad = true
     }
 
