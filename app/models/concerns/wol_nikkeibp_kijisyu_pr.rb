@@ -32,7 +32,6 @@ class WolNikkeibpKijisyuPr
       return false
     end
 
-    is_new_ad = false
     ad_links.each { |ad_link|
       next if Ad.find_by(ad_link: ad_link)
       session.visit(ad_link)
@@ -71,10 +70,7 @@ class WolNikkeibpKijisyuPr
         room_id: ENV["CHATWORK_ROOM_ID"],
         body: "[info][title]#{url} - scraping new ad [/title]#{msg}[/info]"
       )
-
-      is_new_ad = true
     }
-
-    is_new_ad
+    true
   end
 end
