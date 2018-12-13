@@ -44,12 +44,14 @@
         %td
           = ad.id
         %td
-          = link_to ad.title, ad.ad_link, target: "_blank"
+          %div.ad-title
+            %p
+              = link_to (ad.title.length <= 0 ? ad.ad_link : ad.title), ad.ad_link, target: "_blank"
         %td
           = ad.company_name
         %td
           = link_to ad.target_page.name, "#{ad.target_page.uri}", target: "_blank"
         %td
-          %img{src: ad.img_link, class: "ad_img_link"}
+          %img{src: ad.img_link, class: "ad-img-link"}
         %td
           = ad.created_at.strftime("%Y-%m-%d %H:%M:%S")

@@ -4,7 +4,17 @@ body {
   font-family: arial;
 }
 
-.ad_img_link {
+.ad-img-link {
   width: 32px;
   height: 32px;
+}
+
+.ad-title {
+  width: 280px;
+  overflow: hidden;
+  p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
