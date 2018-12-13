@@ -1,27 +1,17 @@
 class WolNikkeibpKijisyuPr
   def self.crawl(target_page)
-    Capybara.register_driver :selenium do |app|
-      Capybara::Selenium::Driver.new(app, {
-        browser: :chrome,
-        desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
-          chrome_options: { args: %w(headless disable-gpu window-size=1680,1050) }
-        )
-      })
-    end
-
-    Capybara.javascript_driver = :selenium
-    session = Capybara::Session.new(:selenium)
+    helper = CrawlHelper.new
 
     (1..300).each { |page_count|
       uri = "#{target_page.uri}/page/#{page_count}/"
-      break unless crawl_pr_page(target_page, uri, session)
+      break unless crawl_pr_page(target_page, uri, helper)
     }
 
-    session.driver.browser.close
-    session.driver.quit
+    helper.destroy
   end
 
-  def self.crawl_pr_page(target_page, page_uri, session)
+  def self.crawl_pr_page(target_page, page_uri, helper)
+    session = helper.session
     session.visit(page_uri)
     ads = session.all("article.article")
     return false if !ads || ads.size <= 0
@@ -40,15 +30,14 @@ class WolNikkeibpKijisyuPr
         title = session.find("h1.entry-header-heading").text
         img_link = session.find("div.entry-body.clearfix").first("img")[:src]
       rescue
-        title = ""
-        img_link = ""
+        title = img_link = ""
       end
 
       begin
-        company = session.find("p", text: /提供：.*/).text
+        company = session.find("p", text: /(提供：|提供:).*/).text
       rescue
         begin
-          company = session.find("span", text: /提供:.*/).text
+          company = session.find("span", text: /(提供：|提供:).*/).text
         rescue
           company = ""
         end
@@ -63,13 +52,7 @@ class WolNikkeibpKijisyuPr
         target_page_id: target_page.id
       )
 
-      chatwork = ChatWork::Client.new(api_key: ENV["CHATWORK_API_KEY"])
-      msg = "Title: #{title}\nCompany Name: #{company}\nLink: #{ad_link}"
-      url = ENV["AD_SCRAPER_URL"]
-      chatwork.create_message(
-        room_id: ENV["CHATWORK_ROOM_ID"],
-        body: "[info][title]#{url} - scraping new ad [/title]#{msg}[/info]"
-      )
+      helper.send_to_chatwork(title, company, ad_link)
     }
     true
   end
