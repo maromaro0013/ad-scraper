@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     post '/crawl_methods', to: 'target_pages#add_crawl_method', on: :member
   end
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :ads, only: %i( show )
 end

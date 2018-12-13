@@ -38,6 +38,8 @@
         image
       %th
         created date
+      %th
+        edit ad
   %tbody
     - @target_site.ad.each do |ad|
       %tr
@@ -55,3 +57,5 @@
           %img{src: ad.img_link, class: "ad-img-link"}
         %td
           = ad.created_at.strftime("%Y-%m-%d %H:%M:%S")
+        %td
+          = link_to "edit", ad_path, { id: ad.id  }
