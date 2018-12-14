@@ -1,0 +1,19 @@
+%h1
+  AD Scraper
+
+- if flash[:notice]
+  %p#notice
+    = flash[:notice]
+
+- if flash[:error]
+  %div#error_explanation
+    %h2
+      = flash[:error]
+
+- if current_user.nil?
+  = link_to 'Signin with Google', user_google_omniauth_authorize_path
+- else
+  %p
+    = "Hello #{current_user.name}"
+  %p
+    = link_to "Sign out", destroy_user_session_path, method: :delete

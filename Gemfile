@@ -54,6 +54,11 @@ gem 'sidekiq'
 # Ruby bindings of ChatWork API
 gem 'chatwork'
 
+# User Authentication
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
