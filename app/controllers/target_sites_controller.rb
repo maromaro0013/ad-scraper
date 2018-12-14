@@ -1,5 +1,5 @@
 class TargetSitesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index, :show]
   protect_from_forgery except: [:create]
 
   def index

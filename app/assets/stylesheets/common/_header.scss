@@ -5,6 +5,13 @@
   }
 }
 
+nav#site_nav {
+  li {
+    display: inline;
+    padding-right: 16px;
+  }
+}
+
 .flash {
   padding: 2px;
   display: none;

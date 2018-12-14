@@ -16,5 +16,7 @@ envstr += "REDIS_HOST=" + secrets['REDIS_HOST'] + "\n"
 envstr += "AD_SCRAPER_URL=" + secrets['AD_SCRAPER_URL'] + "\n"
 envstr += "CHATWORK_API_KEY=" + secrets['CHATWORK_API_KEY'] + "\n"
 envstr += "CHATWORK_ROOM_ID=" + secrets['CHATWORK_ROOM_ID'] + "\n"
+envstr += "GOOGLE_OAUTH2_API_ID=" + secrets['GOOGLE_OAUTH2_API_ID'] + "\n"
+envstr += "GOOGLE_OAUTH2_API_SECRET=" + secrets['GOOGLE_OAUTH2_API_SECRET'] + "\n"
 
 print envstr

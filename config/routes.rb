@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   }
 
   require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+  authenticate :user do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
-  root "target_sites#index", as: :root
+  root "home#index", as: :root
 
   resources :target_sites, only: %i( index show create )
   resources :target_pages, only: %i( create ) do

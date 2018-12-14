@@ -1,4 +1,6 @@
 class AdsController < ApplicationController
+  before_action :authenticate_user!, only: [:show, :update]
+
   def show
     @ad = Ad.find(params[:id])
   end
