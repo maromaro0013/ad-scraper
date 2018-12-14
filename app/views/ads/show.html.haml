@@ -1,1 +1,23 @@
 %h1 Ad [ id : #{@ad.id} ]
+
+%span.flash.flash-successful
+
+= form_with scope: :ad, model: @ad, url: ad_path(@ad), id: "ad-update-form" do |f|
+  %div
+    title :
+    = f.text_field :title
+  %div
+    company_name :
+    = f.text_field :company_name
+  %div
+    ad_link :
+    = f.text_field :ad_link
+  %div
+    img_link :
+    = f.text_field :img_link
+  %div
+    %span
+      = button_tag type: "button" do
+        = link_to "back", target_site_path(@ad.target_site_id)
+    %span
+      = f.submit "submit"

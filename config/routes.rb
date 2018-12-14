@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     post '/crawl_methods', to: 'target_pages#add_crawl_method', on: :member
   end
 
-  resources :ads, only: %i( show )
+  resources :ads, only: %i( show update )
 end

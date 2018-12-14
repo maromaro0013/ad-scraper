@@ -4,3 +4,13 @@
     list-style: none;
   }
 }
+
+.flash {
+  padding: 2px;
+  display: none;
+
+  &-successful {
+    background-color: #4bacdc;
+    color: #fff;
+  }
+}
